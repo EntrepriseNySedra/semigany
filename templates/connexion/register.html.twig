@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow rounded-4 border-0">
+                <div class="card-header text-white" style="background-color: #007BFF;">
+                    <h4 class="mb-0">Créer un compte</h4>
+                </div>
+                <div class="card-body p-4">
+                    {{ form_start(registrationForm) }}
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.email) }}
+                            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.password) }}
+                            {{ form_widget(registrationForm.password, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.nom) }}
+                            {{ form_widget(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.prenom) }}
+                            {{ form_widget(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.telephone) }}
+                            {{ form_widget(registrationForm.telephone, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.promotion) }}
+                            {{ form_widget(registrationForm.promotion, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.anneeDebut) }}
+                            {{ form_widget(registrationForm.anneeDebut, {'attr': {'class': 'form-control', 'rows': 3}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.anneeFin) }}
+                            {{ form_widget(registrationForm.anneeFin, {'attr': {'class': 'form-control', 'rows': 3}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.profession) }}
+                            {{ form_widget(registrationForm.profession, {'attr': {'class': 'form-control', 'rows': 3}}) }}
+                        </div>
+                        <div class="mb-3">
+                            {{ form_label(registrationForm.adresse) }}
+                            {{ form_widget(registrationForm.adresse, {'attr': {'class': 'form-control', 'rows': 3}}) }}
+                        </div>
+                         
+                        <button type="submit" class="btn w-100 text-white" style="background-color: #ffc107;">S'inscrire</button>
+                    {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

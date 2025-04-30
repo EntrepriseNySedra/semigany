@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Carte Ancien</title>
+  <style>
+    body {
+      background-color: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .card {
+      background: white;
+      width: 300px;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      position: relative;
+      text-align: center;
+    }
+
+    .top-shape {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      overflow: hidden;
+    }
+
+    .top-shape::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 60%;
+      height: 100%;
+      background-color: #01426A;
+      clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+
+    .top-shape::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60%;
+      height: 100%;
+      background-color: white;
+    }
+
+    .top-line {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, transparent 45%, #F7E200 45%, #F7E200 55%, transparent 55%);
+      transform: translateX(-50%) rotate(45deg);
+      transform-origin: top center;
+    }
+
+    .association {
+      font-size: 14px;
+      font-weight: bold;
+      color: #01426A;
+      margin: 10px 20px;
+    }
+
+    .photo {
+      width: 100px;
+      height: 100px;
+      background-color: #d9d9d9;
+      border-radius: 10px;
+      margin: 10px auto;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .name {
+      font-size: 16px;
+      font-weight: bold;
+      color: #01426A;
+      margin-bottom: 5px;
+    }
+
+    .promotion {
+      font-size: 14px;
+      color: #01426A;
+      margin-bottom: 20px;
+    }
+
+    .qr-code {
+      width: 100px;
+      height: 100px;
+      margin: 0 auto 10px auto;
+    }
+
+    .qr-code img {
+      width: 100%;
+      height: 100%;
+    }
+
+    .bottom-shape {
+      position: relative;
+      width: 100%;
+      height: 60px;
+      margin-top: 10px;
+      overflow: hidden;
+    }
+
+    .bottom-shape::before,
+    .bottom-shape::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      width: 60%;
+      height: 100%;
+      background-color: #01426A;
+    }
+
+    .bottom-shape::before {
+      left: 0;
+      clip-path: polygon(0 100%, 100% 100%, 0 0);
+    }
+
+    .bottom-shape::after {
+      right: 0;
+      clip-path: polygon(100% 100%, 0 100%, 100% 0);
+    }
+
+    .bottom-line {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(to right, transparent 45%, #F7E200 45%, #F7E200 55%, transparent 55%);
+      transform: translateX(-50%) rotate(-45deg);
+      transform-origin: bottom center;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="card">
+  <div class="top-shape">
+    <div class="top-line"></div>
+  </div>
+
+  <div class="association">
+    ASSOCIATION DES ANCIENS<br>
+    DE SAINT MICHEL AMPARIBE
+  </div>
+
+  <div class="photo">
+    <img src="{{ photo }}"  class="photo">
+  </div>
+  <div class="name">{{ user.nom|upper }} {{ user.prenom|upper }}</div>
+
+  <div class="promotion">PROMOTION {{ user.promotion|upper }}</div>
+
+ <div class="qr-code">
+    <img src="{{urlQR}}" alt="">
+  </div>
+
+  <div class="bottom-shape">
+    <div class="bottom-line">
+   
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

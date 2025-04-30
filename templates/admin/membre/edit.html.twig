@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Modifier Membre - SEMIGANY</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body class="bg-light">
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold" href="#">SEMIGANY Admin</a>
+        <div class="collapse navbar-collapse">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Déconnexion</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container py-5">
+    <div class="form-container">
+        <h2>Modifier</h2>
+        {{ form_start(form) }}
+            <div class="mb-3">
+                {{ form_label(form.photo) }}
+                {{ form_widget(form.photo, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.nom) }}
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.prenom) }}
+                {{ form_widget(form.prenom, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            
+            <div class="mb-3">
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.telephone) }}
+                {{ form_widget(form.telephone, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="mb-3">
+                {{ form_label(form.promotion) }}
+                {{ form_widget(form.promotion, {'attr': {'class': 'form-control'}}) }}
+            </div>
+             <div class="mb-3">
+                {{ form_label(form.anneeDebut) }}
+                {{ form_widget(form.anneeDebut, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+             <div class="mb-3">
+                {{ form_label(form.anneeFin) }}
+                {{ form_widget(form.anneeFin, {'attr': {'class': 'form-control'}}) }}
+            </div>
+
+            <div class="mb-3">
+                {{ form_label(form.adresse) }}
+                {{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+            </div>
+         
+
+            <div class="d-grid gap-2">
+                {{ form_widget(form.save, {'attr': {'class': 'btn btn-custom'}}) }}
+            </div>
+
+             
+
+        {{ form_end(form) }}
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

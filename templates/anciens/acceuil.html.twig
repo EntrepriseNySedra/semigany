@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compte Utilisateur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: 'Poppins', sans-serif;
+        }
+       .sidebar {
+            background-color: #1e1e2f;
+            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            overflow-y: auto;
+        }
+
+        .sidebar .accordion-button {
+            background-color: transparent;
+            color: #ffc107; /* Jaune clair */
+            font-size: 18px;
+        }
+
+        .sidebar .accordion-button:focus {
+            box-shadow: none;
+        }
+
+        .sidebar .accordion-button:not(.collapsed) {
+            color: #007bff; /* Bleu */
+            background-color: #2a2a40;
+        }
+
+        .sidebar .nav-link {
+            color: #cfd8dc;
+            margin: 8px 0;
+            padding: 10px 15px;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        .sidebar .nav-link:hover {
+            background-color: #2a2a40;
+            color: #ffc107; /* Jaune clair */
+        }
+
+        .sidebar .nav-link.active {
+            background-color: #007bff; /* Bleu Semigany */
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .navbar-nav .nav-link {
+            color: #007bff; /* Bleu Semigany */
+            margin: 0 8px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #ffc107; /* Jaune clair au survol */
+        }
+
+        .navbar-nav .nav-link.active {
+            color: #ffc107; /* Jaune clair pour lien actif */
+            font-weight: bold;
+            border-bottom: 2px solid #ffc107;
+        }
+
+        .navbar-nav .dropdown-menu {
+            border-radius: 10px;
+            box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .profile-avatar {
+            width: 32px;
+            height: 32px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+
+        @media (max-width: 991px) {
+            .sidebar {
+                position: relative;
+                width: 100%;
+                min-height: auto;
+                padding: 10px;
+            }
+            .content {
+                margin-left: 0;
+                padding: 20px;
+            }
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+        .profile-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #6c63ff;
+        }
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        .btn-custom {
+            background-color: #6c63ff;
+            color: white;
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #5a52d6;
+        }
+        .badge-notification {
+            background-color: #ff4d4f;
+            color: white;
+            border-radius: 12px;
+            padding: 5px 10px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .form-control:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.2rem rgba(255, 193, 7, 0.25);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+    </style>
+</head>
+
+<body>
+
+<div class="container-fluid">
+    <div class="row flex-nowrap">
+
+        <!-- Sidebar -->
+       <!-- Sidebar avec Accordion -->
+       
+
+
+        <!-- Main Content -->
+        <div class="col py-3 content">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm rounded mb-4 px-3">
+    <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-primary" href="{{ path('app_connected') }}">SEMIGANY</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto align-items-center">
+              
+                <li class="nav-item">
+                    <a class="nav-link {% if app.request.get('_route') == 'user_events' %}active{% endif %}" href="{{ path('user_events') }}">Mes Événements</a> 
+                    
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('user_cotisations') }}">Mes Cotisations</a>
+                </li>
+                
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg" alt="Avatar" class="rounded-circle me-2" width="32" height="32">
+                        <span class="fw-semibold">{{ user.nom }} {{ user.prenom }}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                        <li><a class="dropdown-item" href="{{ path('user_profile') }}">Mon Profil</a></li>
+                        <li><a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+           <div class="container mt-5">
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ app.session.flashBag.get('success')[0] }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    <div class="card shadow-sm rounded">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Mettre à jour mon compte</h5>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{{ path('user_update_profile') }}" id="updateForm">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="nom" class="form-label fw-semibold">Nom</label>
+                        <input type="text" class="form-control" id="nom" name="nom" value="{{ user.nom }}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="prenom" class="form-label fw-semibold">Prénom</label>
+                        <input type="text" class="form-control" id="prenom" name="prenom" value="{{ user.prenom }}" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="telephone" class="form-label fw-semibold">Téléphone</label>
+                        <input type="text" class="form-control" id="telephone" name="telephone" value="{{ user.telephone }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="email" class="form-label fw-semibold">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="promotion" class="form-label fw-semibold">Promotion</label>
+                        <input type="text" class="form-control" id="promotion" name="promotion" value="{{ user.Promotion }}">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="profession" class="form-label fw-semibold">Profession</label>
+                        <input type="text" class="form-control" id="profession" name="profession" value="{{ user.profession }}">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="adresse" class="form-label fw-semibold">Adresse</label>
+                    <input type="text" class="form-control" id="adresse" name="adresse" value="{{ user.adresse }}">
+                </div>
+
+                <hr class="my-4">
+
+                <h6 class="text-primary fw-bold mb-3">Changer le mot de passe (facultatif)</h6>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label for="password" class="form-label fw-semibold">Nouveau mot de passe</label>
+                        <input type="password" class="form-control" id="password" name="password">
+                    </div>
+                    
+                </div>
+
+                <div class="text-end">
+                    <button type="submit" class="btn btn-primary rounded-pill px-4" id="submitButton">
+                        <span class="button-text">Mettre à jour</span>
+                        <span class="spinner-border spinner-border-sm d-none" id="spinner" role="status" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    const updateForm = document.getElementById('updateForm');
+    const submitButton = document.getElementById('submitButton');
+    const spinner = document.getElementById('spinner');
+    const buttonText = document.querySelector('.button-text');
+
+    updateForm.addEventListener('submit', function() {
+        submitButton.disabled = true;
+        spinner.classList.remove('d-none');
+        buttonText.textContent = "Mise à jour...";
+    });
+</script>
+</body>
+</html>

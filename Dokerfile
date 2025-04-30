@@ -5,8 +5,6 @@ RUN apt-get update && apt-get install -y \
     git unzip zip curl libicu-dev libonig-dev libxml2-dev libzip-dev \
     && docker-php-ext-install intl pdo pdo_mysql zip
 
-# Installer Composer
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
 # Copier le code
 COPY . /var/www/html/
